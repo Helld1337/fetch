@@ -36,7 +36,7 @@ echo -e "${blue}Install Date${reset}: $install"
 cpu=$(grep -m 1 'model name' /proc/cpuinfo | cut -d: -f2)
 echo -e "${blue}CPU${reset}:$cpu"
 
-gpu=$(lspci | grep VGA | grep -o "Radeon.*" | cut -d'[' -f1 | sed 's/\]//' | sed 's/ (rev.*//')
+gpu=$(lspci | grep -E "VGA|3D" | grep -oP '\[\K[^\]]+(?=\])' | tail -n 1)
 echo -e "${blue}GPU${reset}: $gpu"
 
 memory=$(free -m | awk '/Mem:/{printf "%.1fG / %.1fG (%.0f%%)", $3/1024, $2/1024, $3*100/$2}')
