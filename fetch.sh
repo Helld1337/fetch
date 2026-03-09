@@ -14,8 +14,9 @@ echo -e "${blue}Host${reset}: $vendor $product"
 krnl=$(uname -r)
 echo -e "${blue}Kernel${reset}: $krnl"
 
-pacman=$(pacman -Q | wc -l)
-echo -e "${blue}Packages${reset}: $pacman pacman"
+pacman=$(pacman -Qn | wc -l)
+aur=$(yay -Qm | wc -l)
+echo -e "${blue}Packages${reset}: $pacman pacman, $aur AUR"
 
 term=$(echo $TERM)
 echo -e "${blue}Terminal${reset}: $term"
